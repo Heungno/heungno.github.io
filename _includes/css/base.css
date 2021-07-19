@@ -44,20 +44,30 @@
 	q:before, q:after {
 		content: '';
 		content: none; }
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
 
-	table{
+		table {
 			border-collapse: collapse;
-			border-spacing: 0;
-			border:2px solid #ff0000;
-	}
+			border-top: 3px solid #3498db;
+		}  
+		table th {
+			color: #3498db;
+			background: #f0f6f9;
+		}
+		table th, table td {
+			padding: 10px;
+			border: 1px solid #ddd;
+		}
+		table th:first-child, table td:first-child {
+			border-left: 0;
+		}
+		table th:last-child, table td:last-child {
+			border-right: 0;
+		}
+
 	
-	th{
-			border:2px solid #000000;
-	}
-	
-	td{
-			border:1px solid #000000;
-	}
 
 
 /* #Basic Styles

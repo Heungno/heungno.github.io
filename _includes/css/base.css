@@ -44,32 +44,29 @@
 	q:before, q:after {
 		content: '';
 		content: none; }
-	table {
+	/* table {
 		border-collapse: collapse;
-		border-spacing: 0; }
+		border-spacing: 0; } */
 
-		table {
+	table {
 			border-collapse: collapse;
 			border-top: 3px solid #3498db;
 			width: : 100%;
 		}  
-		table th {
+	table th {
 			color: #3498db;
 			background: #f0f6f9;
 		}
-		table th, table td {
+	table th, table td {
 			padding: 10px;
 			border: 1px solid #ddd;
 		}
-		table th:first-child, table td:first-child {
+	table th:first-child, table td:first-child {
 			border-left: 0;
 		}
-		table th:last-child, table td:last-child {
+	table th:last-child, table td:last-child {
 			border-right: 0;
 		}
-
-	
-
 
 /* #Basic Styles
 ================================================== */

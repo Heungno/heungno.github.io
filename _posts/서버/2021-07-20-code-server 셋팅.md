@@ -29,7 +29,7 @@ server {
     listen 80;
     listen [::]:80;
 
-	server_name {{domain.com}} {{www.domain.com}};
+	server_name [domain.com] [sub.domain.com];
 
     root /home/nginx/html;
     index index.html index.htm;
@@ -87,7 +87,7 @@ nginx:
 certbot:
   image: certbot/certbot:latest
   container_name: certbot
-  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+  command: certonly --webroot --webroot-path=/var/www/certbot --email [email] --agree-tos --no-eff-email -d [domain.com] -d [sub.domain.com]
   volumes:
     - ../certbot/conf:/etc/letsencrypt
     - ../certbot/logs:/var/log/letsencrypt
@@ -101,9 +101,9 @@ certbot:
 ## nginx ssl 설정
 
 ```c#
-ssl_certificate /etc/nginx/ssl/live/{{domain.com}}/fullchain.pem;
-ssl_certificate_key /etc/nginx/ssl/live/{{domain.com}}/privkey.pem;
-ssl_trusted_certificate /etc/nginx/ssl/live/h{{domain.com}}/chain.pem;
+ssl_certificate /etc/nginx/ssl/live/[domain.com]/fullchain.pem;
+ssl_certificate_key /etc/nginx/ssl/live/[domain.com]/privkey.pem;
+ssl_trusted_certificate /etc/nginx/ssl/live/h[domain.com]/chain.pem;
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-XSS-Protection "1; mode=block" always;
 add_header X-Content-Type-Options "nosniff" always;
@@ -118,7 +118,7 @@ resolver_timeout 10s;
 
 ```
 
-- {{domain.com}} 인증서경로 변경
+- `domain.com` 인증서경로 변경
 
 ## code-server 컨테이너생성
 
@@ -126,7 +126,7 @@ resolver_timeout 10s;
 #nginx/code-server.conf
 server {
     listen 443 ssl http2;
-    server_name	{{code.domain.com}};
+    server_name	code.domain.com;
     server_tokens off;
 
     include /etc/nginx/conf.d/ssl-conf;
@@ -156,8 +156,8 @@ code-server:
     - TZ=Asia/Seoul
     - LANG=ko_KR.UTF-8
     - LANGUAGE=ko_KR.UTF-8
-    - PASSWORD={{password}}#option
-    - SUDO_PASSWORD={{password}}#option
+    - PASSWORD=[password] #option
+    - SUDO_PASSWORD=[password] #option
   working_dir: /home/workspace
   volumes:
     - ../code-server/config:/config
@@ -169,7 +169,7 @@ code-server:
 ```
 
 - code-server 컨태이너 생성
-- **{{password}}** 변경
+- `password` 변경
 
   `env> docker-compose up code-server`
 
@@ -212,8 +212,8 @@ services:
       - TZ=Asia/Seoul
       - LANG=ko_KR.UTF-8
       - LANGUAGE=ko_KR.UTF-8
-      - PASSWORD={{password}}#option
-      - SUDO_PASSWORD={{password}}#option
+      - PASSWORD=[password] #option
+      - SUDO_PASSWORD=[password] #option
     working_dir: /home/workspace
     volumes:
       - ../code-server/config:/config
@@ -226,7 +226,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
     volumes:
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/logs:/var/log/letsencrypt
@@ -257,7 +257,7 @@ server {
     listen 80;
     listen [::]:80;
 
-	server_name {{domain.com}} {{www.domain.com}};
+	server_name [domain.com] [sub.domain.com];
 
     root /home/nginx/html;
     index index.html index.htm;
@@ -315,7 +315,7 @@ nginx:
 certbot:
   image: certbot/certbot:latest
   container_name: certbot
-  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
   volumes:
     - ../certbot/conf:/etc/letsencrypt
     - ../certbot/logs:/var/log/letsencrypt
@@ -329,9 +329,9 @@ certbot:
 ## nginx ssl 설정
 
 ```c#
-ssl_certificate /etc/nginx/ssl/live/{{domain.com}}/fullchain.pem;
-ssl_certificate_key /etc/nginx/ssl/live/{{domain.com}}/privkey.pem;
-ssl_trusted_certificate /etc/nginx/ssl/live/h{{domain.com}}/chain.pem;
+ssl_certificate /etc/nginx/ssl/live/[domain.com]/fullchain.pem;
+ssl_certificate_key /etc/nginx/ssl/live/[domain.com]/privkey.pem;
+ssl_trusted_certificate /etc/nginx/ssl/live/h[domain.com]/chain.pem;
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-XSS-Protection "1; mode=block" always;
 add_header X-Content-Type-Options "nosniff" always;
@@ -346,7 +346,7 @@ resolver_timeout 10s;
 
 ```
 
-- {{domain.com}} 인증서경로 변경
+- [domain.com] 인증서경로 변경
 
 ## code-server 컨테이너생성
 
@@ -454,7 +454,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
     volumes:
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/logs:/var/log/letsencrypt
@@ -485,7 +485,7 @@ server {
     listen 80;
     listen [::]:80;
 
-	server_name {{domain.com}} {{www.domain.com}};
+	server_name [domain.com] [sub.domain.com];
 
     root /home/nginx/html;
     index index.html index.htm;
@@ -543,7 +543,7 @@ nginx:
 certbot:
   image: certbot/certbot:latest
   container_name: certbot
-  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
   volumes:
     - ../certbot/conf:/etc/letsencrypt
     - ../certbot/logs:/var/log/letsencrypt
@@ -557,9 +557,9 @@ certbot:
 ## nginx ssl 설정
 
 ```c#
-ssl_certificate /etc/nginx/ssl/live/{{domain.com}}/fullchain.pem;
-ssl_certificate_key /etc/nginx/ssl/live/{{domain.com}}/privkey.pem;
-ssl_trusted_certificate /etc/nginx/ssl/live/h{{domain.com}}/chain.pem;
+ssl_certificate /etc/nginx/ssl/live/[domain.com]/fullchain.pem;
+ssl_certificate_key /etc/nginx/ssl/live/[domain.com]/privkey.pem;
+ssl_trusted_certificate /etc/nginx/ssl/live/h[domain.com]/chain.pem;
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-XSS-Protection "1; mode=block" always;
 add_header X-Content-Type-Options "nosniff" always;
@@ -574,7 +574,7 @@ resolver_timeout 10s;
 
 ```
 
-- {{domain.com}} 인증서경로 변경
+- [domain.com] 인증서경로 변경
 
 ## code-server 컨테이너생성
 
@@ -682,7 +682,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
     volumes:
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/logs:/var/log/letsencrypt
@@ -711,7 +711,7 @@ server {
     listen 80;
     listen [::]:80;
 
-	server_name {{domain.com}} {{www.domain.com}};
+	server_name [domain.com] [sub.domain.com];
 
     root /home/nginx/html;
     index index.html index.htm;
@@ -769,7 +769,7 @@ nginx:
 certbot:
   image: certbot/certbot:latest
   container_name: certbot
-  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+  command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
   volumes:
     - ../certbot/conf:/etc/letsencrypt
     - ../certbot/logs:/var/log/letsencrypt
@@ -783,9 +783,9 @@ certbot:
 ## nginx ssl 설정
 
 ```c#
-ssl_certificate /etc/nginx/ssl/live/{{domain.com}}/fullchain.pem;
-ssl_certificate_key /etc/nginx/ssl/live/{{domain.com}}/privkey.pem;
-ssl_trusted_certificate /etc/nginx/ssl/live/h{{domain.com}}/chain.pem;
+ssl_certificate /etc/nginx/ssl/live/[domain.com]/fullchain.pem;
+ssl_certificate_key /etc/nginx/ssl/live/[domain.com]/privkey.pem;
+ssl_trusted_certificate /etc/nginx/ssl/live/h[domain.com]/chain.pem;
 add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-XSS-Protection "1; mode=block" always;
 add_header X-Content-Type-Options "nosniff" always;
@@ -800,7 +800,7 @@ resolver_timeout 10s;
 
 ```
 
-- {{domain.com}} 인증서경로 변경
+- [domain.com] 인증서경로 변경
 
 ## code-server 컨테이너생성
 
@@ -908,7 +908,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d {{domain.com}} -d {{sub.domain.com}}
+    command: certonly --webroot --webroot-path=/var/www/certbot --email {{email}} --agree-tos --no-eff-email -d [domain.com] -d {{sub.domain.com}}
     volumes:
       - ../certbot/conf:/etc/letsencrypt
       - ../certbot/logs:/var/log/letsencrypt

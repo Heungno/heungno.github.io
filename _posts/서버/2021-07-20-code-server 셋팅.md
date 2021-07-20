@@ -7,8 +7,6 @@ tag:
   - docker, docker-compose, code-server, vscode, nginx
 ---
 
-# docker로 code-server 만들기
-
 ## 구조
 
 ```

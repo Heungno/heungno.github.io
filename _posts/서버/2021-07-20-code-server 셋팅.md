@@ -21,7 +21,7 @@ tag:
 
 ## nginx 설정
 
-```c
+```c#
 # nginx/conf.d/default.conf
 server {
     listen 80;
@@ -76,8 +76,7 @@ nginx:
 ```
 
 - nginx 컨태이너 생성
-
-  `env> docker-compose up code-server`
+  `docker-compose up code-server`
 
 ## Let's Encrypt certbot으로 ssl 인증서 관리
 
@@ -93,8 +92,9 @@ certbot:
 ```
 
 - ssl 인증서 생성하기
+* [email] 변경, [domain.com] 변경
 
-  `env> docker-compose up certbot`
+  컨테이너 실행 `docker-compose up certbot`
 
 ## nginx ssl 설정
 
@@ -169,7 +169,7 @@ code-server:
 - code-server 컨태이너 생성
 - `password` 변경
 
-  `env> docker-compose up code-server`
+  컨테이너 생성 `docker-compose up code-server`
 
 # 최종 docker-compose.yml
 
